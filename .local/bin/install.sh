@@ -33,4 +33,6 @@ fi
 config checkout
 config config status.showUntrackedFiles no
 
+chmod +x ".local/bin/*"
+
 echo "DONE"

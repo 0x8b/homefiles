@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+readonly ORIGINAL_WORKING_DIRECTORY=$(pwd)
+
+# https://github.com/rbenv/rbenv
+[ -d ~/.rbenv ] && cd ~/.rbenv && git pull
+
+# https://github.com/rbenv/ruby-build
+[ -d ~/.rbenv/plugins/ruby-build ] && cd ~/.rbenv/plugins/ruby-build && git pull
+
+# update Rust toolchain
+[ command -v rustup ] && rustup update stable
+
+cd "${ORIGINAL_WORKING_DIRECTORY}"
