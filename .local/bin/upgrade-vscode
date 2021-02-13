@@ -3,7 +3,7 @@
 set -euo pipefail
 
 [ -d /opt/vscode ] && rm -rf /opt/vscode
-#curl -L "https://code.visualstudio.com/sha/download?build=stable&os=linux-x64" > /tmp/vscode.tar.gz
+curl -L "https://code.visualstudio.com/sha/download?build=stable&os=linux-x64" > /tmp/vscode.tar.gz
 tar -xzf /tmp/vscode.tar.gz --directory /opt
 mv /opt/VSCode-linux-x64 /opt/vscode
 mkdir -p /home/oberon/.config/Code
