@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+curl -L https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz > /tmp/ffmpeg.tar.xz
+[ -d /opt/ffmpeg ] && rm -rf /opt/ffmpeg
+tar -xf /tmp/ffmpeg.tar.xz --directory /opt
+mv /opt/ffmpeg* /opt/ffmpeg
+ln -snf /opt/ffmpeg/ffmpeg /usr/bin/ffmpeg
+ln -snf /opt/ffmpeg/ffprobe /usr/bin/ffprobe
+[ -x /opt/ffmpeg/qt-faststart ] && ln -snf /opt/ffmpeg/qt-faststart /usr/bin/qt-faststart

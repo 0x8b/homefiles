@@ -14,3 +14,8 @@ curl -Lks https://raw.githubusercontent.com/0x8b/homefiles/master/.local/bin/ins
 ## Additional software
 
 - [rbenv](https://github.com/rbenv/rbenv) with [ruby-build](https://github.com/rbenv/ruby-build) plugin
+- [ffmpeg](https://ffmpeg.org/)
+- [bat](https://github.com/sharkdp/bat)
+- [fd](https://github.com/sharkdp/fd)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [fzf](https://github.com/junegunn/fzf)

@@ -98,4 +98,6 @@ fi
 export PATH="$HOME/.cargo/bin:$HOME/.rbenv/bin:$PATH"
 
 eval "$(rbenv init -)"
-source "$HOME/.cargo/env"
+
+[ -f ~/.cargo/env ] && source ~/.cargo/env
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
