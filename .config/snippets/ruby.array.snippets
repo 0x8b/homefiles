@@ -1,0 +1,29 @@
+a split, split a
+---
+Divides array into subarrays based on a delimiter.
+---
+inject([[]]) { |acc, e| (e$1) ? acc << [] : acc.last << e; acc }
+===
+nonzero, delete empty, reject empty, drop empty
+---
+Rejects all subarrays whose length is 0.
+---
+reject { |a| a.size.zero? }
+===
+map
+---
+map { |a| .. }
+---
+map { |a| a$0 }
+===
+mapp
+---
+map { |a, b| .. }
+---
+map { |a, b| $0 }
+===
+mappp
+---
+map { |a, b, c| .. }
+---
+map { |a, b, c| $0 }

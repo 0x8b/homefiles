@@ -1,0 +1,91 @@
+if
+---
+if .. end
+---
+if $0
+end
+===
+iff
+---
+if .. elsif .. end
+---
+if $0
+elsif 
+end
+===
+ife
+---
+if .. else .. end
+---
+if $0
+else
+end
+===
+iffe
+---
+if .. elsif .. else .. end
+---
+if $0
+elsif 
+else
+end
+===
+while
+---
+while .. do .. end
+---
+while ($0) do
+\t
+end
+===
+for in
+---
+for .. in .. end
+---
+for $1 in $0
+\t
+end
+===
+loop
+---
+loop do .. end
+---
+loop do
+\t$0
+end
+===
+unless
+---
+unless .. end
+---
+unless ($0)
+\t
+end
+===
+until
+---
+until .. do ..end
+---
+until ($0) do
+\t
+end
+===
+case-in
+---
+case .. in .. in .. else .. end
+---
+case $0
+in 
+in 
+else
+end
+===
+case-when
+---
+case .. when .. when .. else .. end
+---
+case $0
+when 
+when 
+else
+end

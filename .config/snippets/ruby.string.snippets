@@ -1,0 +1,11 @@
+ints
+---
+Finds all integers in a given string.
+---
+strip.scan(/[+-]?\d+/).map(&:to_i)
+===
+floats
+---
+Finds all floats in a given string.
+---
+strip.scan(/[+-]?(\d+([.]\d*)?([eE][+-]?\d+)?|[.]\d+([eE][+-]?\d+)?)/).map { |g| g.first.to_f }

@@ -1,0 +1,121 @@
+{
+  "a split, split a": {
+    "prefix": [
+      "a split",
+      "split a"
+    ],
+    "description": "Divides array into subarrays based on a delimiter.",
+    "body": "inject([[]]) { |acc, e| (e$1) ? acc << [] : acc.last << e; acc }"
+  },
+  "nonzero, delete empty, reject empty, drop empty": {
+    "prefix": [
+      "nonzero",
+      "delete empty",
+      "reject empty",
+      "drop empty"
+    ],
+    "description": "Rejects all subarrays whose length is 0.",
+    "body": "reject { |a| a.size.zero? }"
+  },
+  "map": {
+    "prefix": "map",
+    "description": "map { |a| .. }",
+    "body": "map { |a| a$0 }"
+  },
+  "mapp": {
+    "prefix": "mapp",
+    "description": "map { |a, b| .. }",
+    "body": "map { |a, b| $0 }"
+  },
+  "mappp": {
+    "prefix": "mappp",
+    "description": "map { |a, b, c| .. }",
+    "body": "map { |a, b, c| $0 }"
+  },
+  "hash, defaultdict": {
+    "prefix": [
+      "hash",
+      "defaultdict"
+    ],
+    "description": "Hash that calls a proc to supply missing values.",
+    "body": "Hash.new { |h, k| h[k] = 0 }"
+  },
+  "matrix 2d, array 2d": {
+    "prefix": [
+      "matrix 2d",
+      "array 2d"
+    ],
+    "description": "2D array filled with zeros.",
+    "body": "Array.new (${1:rows}) { Array.new (${2:cols}) { 0 } }"
+  },
+  "if": {
+    "prefix": "if",
+    "description": "if .. end",
+    "body": "if $0\nend"
+  },
+  "iff": {
+    "prefix": "iff",
+    "description": "if .. elsif .. end",
+    "body": "if $0\nelsif \nend"
+  },
+  "ife": {
+    "prefix": "ife",
+    "description": "if .. else .. end",
+    "body": "if $0\nelse\nend"
+  },
+  "iffe": {
+    "prefix": "iffe",
+    "description": "if .. elsif .. else .. end",
+    "body": "if $0\nelsif \nelse\nend"
+  },
+  "while": {
+    "prefix": "while",
+    "description": "while .. do .. end",
+    "body": "while ($0) do\n\t\nend"
+  },
+  "for in": {
+    "prefix": "for in",
+    "description": "for .. in .. end",
+    "body": "for $1 in $0\n\t\nend"
+  },
+  "loop": {
+    "prefix": "loop",
+    "description": "loop do .. end",
+    "body": "loop do\n\t$0\nend"
+  },
+  "unless": {
+    "prefix": "unless",
+    "description": "unless .. end",
+    "body": "unless ($0)\n\t\nend"
+  },
+  "until": {
+    "prefix": "until",
+    "description": "until .. do ..end",
+    "body": "until ($0) do\n\t\nend"
+  },
+  "case-in": {
+    "prefix": "case-in",
+    "description": "case .. in .. in .. else .. end",
+    "body": "case $0\nin \nin \nelse\nend"
+  },
+  "case-when": {
+    "prefix": "case-when",
+    "description": "case .. when .. when .. else .. end",
+    "body": "case $0\nwhen \nwhen \nelse\nend"
+  },
+  "end clipboard": {
+    "prefix": "end clipboard",
+    "description": "Creates data section with content of clipboard.",
+    "body": "$0\n\n__END__\n$CLIPBOARD"
+  },
+  "ints": {
+    "prefix": "ints",
+    "description": "Finds all integers in a given string.",
+    "body": "strip.scan(/[+-]?\\d+/).map(&:to_i)"
+  },
+  "floats": {
+    "prefix": "floats",
+    "description": "Finds all floats in a given string.",
+    "body": "strip.scan(/[+-]?(\\d+([.]\\d*)?([eE][+-]?\\d+)?|[.]\\d+([eE][+-]?\\d+)?)/).map { |g| g.first.to_f }"
+  }
+}

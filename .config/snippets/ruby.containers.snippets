@@ -1,0 +1,11 @@
+hash, defaultdict
+---
+Hash that calls a proc to supply missing values.
+---
+Hash.new { |h, k| h[k] = 0 }
+===
+matrix 2d, array 2d
+---
+2D array filled with zeros.
+---
+Array.new (${1:rows}) { Array.new (${2:cols}) { 0 } }
