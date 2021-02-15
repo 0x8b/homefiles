@@ -95,8 +95,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-eval "$(rbenv init -)"
-
 function config {
   case $1 in
     "edit" | "modify")
@@ -107,7 +105,7 @@ function config {
       ;;
     "publish" | "backup")
       local -r message="$2"
-      config commit -m "'${message:-update}'"
+      config commit -m "${message:-update}"
       config push -u origin master
       ;;
     "list-tracked-files")
@@ -119,4 +117,7 @@ function config {
   esac
 }
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.last-git-peek ] && export LAST_GIT_PEEK=$(cat ~/.last-git-peek)
+
+eval "$(zoxide init bash)"

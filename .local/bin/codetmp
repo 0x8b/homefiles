@@ -4,15 +4,11 @@
 
 set -euo pipefail
 
-REPO="$1"
+readonly REPO="$1"
 readonly TMPD="$(mktemp -d)"
-
 git clone --depth 1 "$REPO" "$TMPD"
-
 echo "$TMPD" > ~/.last-git-peek
-
-cd "$TMPD" # undo by `cd -`
-
 export LAST_GIT_PEEK="$TMPD"
+cd "$TMPD" # undo by `cd -`
 
 # launch editor or ripgrep

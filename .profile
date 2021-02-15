@@ -35,4 +35,5 @@ if [ -d "$HOME/.rbenv/bin" ] ; then
 fi
 
 [ -f ~/.cargo/env ] && source ~/.cargo/env
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+eval "$(rbenv init -)"

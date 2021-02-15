@@ -3,4 +3,11 @@
 set -euo pipefail
 
 curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+
 chmod a+rx /usr/local/bin/youtube-dl
+
+if command -v python3.9 ; then
+  ln -sf $(command -v python3.9) /usr/bin/python
+else
+  ln -sf $(command -v python 3.8) /usr/bin/python
+fi

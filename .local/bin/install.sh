@@ -33,6 +33,12 @@ fi
 config checkout
 config config status.showUntrackedFiles no
 
-chmod +x ".local/bin/*"
+cd ~/.local/bin
+chmod +x *
+chmod -x README.md
+cd -
+
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
 
 echo "DONE"

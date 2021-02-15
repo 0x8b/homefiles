@@ -28,6 +28,9 @@ if is_command_and_executable "cargo" ; then
 
   # https://github.com/BurntSushi/ripgrep
   cargo install ripgrep
+
+  # https://github.com/ajeetdsouza/zoxide
+  cargo install zoxide
 fi
 
 # https://github.com/junegunn/fzf

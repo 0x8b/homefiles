@@ -6,5 +6,4 @@ curl -L "https://code.visualstudio.com/sha/download?build=stable&os=linux-x64" >
 [ -d /opt/vscode ] && rm -rf /opt/vscode
 tar -xzf /tmp/vscode.tar.gz --directory /opt
 mv /opt/VSCode* /opt/vscode
-mkdir -p /home/oberon/.config/Code
 ln -snf /opt/vscode/code /usr/bin/code
