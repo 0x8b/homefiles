@@ -95,12 +95,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="$HOME/.cargo/bin:$HOME/.rbenv/bin:$PATH"
-
 eval "$(rbenv init -)"
-
-[ -f ~/.cargo/env ] && source ~/.cargo/env
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 function config {
   case $1 in
@@ -110,7 +105,9 @@ function config {
     "search" | "find")
       rg "$2" $(config list-tracked-files)
       ;;
-    "publish")
+    "publish" | "backup")
+      local -r message="$2"
+      config commit -m "'${message:-update}'"
       config push -u origin master
       ;;
     "list-tracked-files")
@@ -123,5 +120,3 @@ function config {
 }
 
 [ -f ~/.last-git-peek ] && export LAST_GIT_PEEK=$(cat ~/.last-git-peek)
-
-alias git-peek='source codetmp'
