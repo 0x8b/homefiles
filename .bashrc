@@ -101,3 +101,27 @@ eval "$(rbenv init -)"
 
 [ -f ~/.cargo/env ] && source ~/.cargo/env
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+function config {
+  case $1 in
+    "edit" | "modify")
+      nano $(config list-tracked-files | fzf -e -i)
+      ;;
+    "search" | "find")
+      rg "$2" $(config list-tracked-files)
+      ;;
+    "publish")
+      config push -u origin master
+      ;;
+    "list-tracked-files")
+      config ls-tree -r master --full-tree --name-only | sed -e "s/^/\/home\/$USER\//"
+      ;;
+    *)
+      /usr/bin/git --git-dir=$HOME/.homefiles/ --work-tree=$HOME "$@"
+      ;;
+  esac
+}
+
+[ -f ~/.last-git-peek ] && export LAST_GIT_PEEK=$(cat ~/.last-git-peek)
+
+alias git-peek='source codetmp'

@@ -17,6 +17,7 @@ curl -Lks https://raw.githubusercontent.com/0x8b/homefiles/master/.local/bin/ins
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [rbenv](https://github.com/rbenv/rbenv) with [ruby-build](https://github.com/rbenv/ruby-build) plugin
 - [Ruby 3.0.0](https://www.ruby-lang.org/en/)
+- [Rust 1.50.0](https://www.rust-lang.org/)
 - [ffmpeg](https://ffmpeg.org/)
 - [bat](https://github.com/sharkdp/bat)
 - [fd](https://github.com/sharkdp/fd)
