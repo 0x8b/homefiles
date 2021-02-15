@@ -3,18 +3,19 @@
 require "json"
 require "fileutils"
 
-code_snippets = {}
+code_snippets = Hash.new { |h, k| h[k] = {} }
 
 puts "Collecting snippets..."
 
-Dir.glob File.expand_path("~/.config/snippets") + "/**/ruby*.snippets" do |filename|
+Dir.glob File.expand_path("~/.config/snippets/**/*.snippets") do |filename|
   File.open filename, "r" do |snippets_file|
     snippets = snippets_file.read.split "==="
+    language = filename.split("/").last.split(".").first
 
     snippets.each do |snippet|
       prefix, description, body = snippet.split "---"
 
-      code_snippets[prefix.strip] = {
+      code_snippets[language][prefix.strip] = {
         "prefix" => prefix.strip.split(/,\s*/).yield_self { |pre| pre.size == 1 ? pre.first : pre },
         "description" => description.strip,
         "body" => body.strip.gsub("\\t", "\t").gsub("\\n", "\n")
@@ -25,11 +26,16 @@ Dir.glob File.expand_path("~/.config/snippets") + "/**/ruby*.snippets" do |filen
   end
 end
 
-FileUtils.mkdir_p "~/.config/Code/User/snippets"
-FileUtils.touch "~/.config/Code/User/snippets/ruby.json"
+FileUtils.mkdir_p File.expand_path("~/.config/Code/User/snippets")
 
-File.open File.expand_path("~/.config/Code/User/snippets/ruby.json"), "w" do |file|
-  file.write JSON.pretty_generate(code_snippets)
+code_snippets.each do |language, snippets|
+  snippets_filename = File.expand_path("~/.config/Code/User/snippets/#{language}.json")
 
-  puts "Saved at #{File.expand_path file.path}"
+  FileUtils.touch snippets_filename
+
+  File.open snippets_filename, "w" do |file|
+    file.write JSON.pretty_generate(snippets)
+
+    puts "Saved at #{File.expand_path file.path}"
+  end
 end
