@@ -10,7 +10,7 @@ puts "Collecting snippets..."
 Dir.glob File.expand_path("~/.config/snippets/**/*.snippets") do |filename|
   File.open filename, "r" do |snippets_file|
     snippets = snippets_file.read.split "==="
-    language = filename.split("/").last.split(".").first
+    language = filename.split("/").last(2).first
 
     snippets.each do |snippet|
       prefix, description, body = snippet.split "---"

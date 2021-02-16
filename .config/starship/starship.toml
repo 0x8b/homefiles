@@ -21,7 +21,7 @@ show_always = true
 
 [directory]
 format = "[$path]($style) [$read_only]($read_only_style)"
-read_only = ""
+read_only = "\uf023"
 style = "green"
 truncation_symbol = ".../"
 truncation_length = 6
@@ -34,11 +34,11 @@ style = "fg:#555555"
 disabled = false
 format = "[$symbol $status ]($style)"
 style = "bold fg:#ff0000"
-symbol = ""
+symbol = "\uf0e7"
 
 [character]
-success_symbol = "[](green)"
-error_symbol = "[](fg:#ff0000)"
+success_symbol = "[\uf553](green)"
+error_symbol = "[\uf553](fg:#ff0000)"
 
 [package]
 disabled = false
