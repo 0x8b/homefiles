@@ -36,4 +36,7 @@ fi
 # https://github.com/junegunn/fzf
 [ -d ~/.fzf ] && cd ~/.fzf && git pull && ~/.fzf/install
 
+# https://github.com/starship/starship
+curl -fsSL https://starship.rs/install.sh | bash
+
 cd "${ORIGINAL_WORKING_DIRECTORY}"

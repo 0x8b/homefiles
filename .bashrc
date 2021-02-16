@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -95,6 +95,24 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+  PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+  PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/.cargo/bin" ] ; then
+  PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+if [ -d "$HOME/.rbenv/bin" ] ; then
+  PATH="$HOME/.rbenv/bin:$PATH"
+fi
+
 function config {
   case $1 in
     "edit" | "modify")
@@ -117,7 +135,22 @@ function config {
   esac
 }
 
+if [ -f ~/.last-git-peek ] ; then
+  readonly lgp="$(cat ~/.last-git-peek | awk '{ print $1 }')"
+
+  if [ -d "$lgp" ] ; then
+    export LAST_GIT_PEEK="$lgp"
+  fi
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.last-git-peek ] && export LAST_GIT_PEEK=$(cat ~/.last-git-peek)
+
+export RBENV_VERSION=3.0.0
+eval "$(rbenv init -)"
+
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+[ -f ~/.cargo/env ] && source ~/.cargo/env
 
 eval "$(zoxide init bash)"
+eval "$(starship init bash)"

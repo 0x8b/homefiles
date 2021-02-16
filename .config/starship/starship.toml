@@ -1,0 +1,44 @@
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$status\
+$character"""
+
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+[username]
+style_user = "white bold"
+style_root = "red bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+
+[directory]
+format = "[$path]($style) [$read_only]($read_only_style)"
+read_only = ""
+style = "green"
+truncation_symbol = ".../"
+truncation_length = 6
+
+[cmd_duration]
+min_time = 10_000
+style = "fg:#555555"
+
+[status]
+disabled = false
+format = "[$symbol $status ]($style)"
+style = "bold fg:#ff0000"
+symbol = ""
+
+[character]
+success_symbol = "[](green)"
+error_symbol = "[](fg:#ff0000)"
+
+[package]
+disabled = false

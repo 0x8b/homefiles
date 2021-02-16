@@ -4,11 +4,16 @@
 
 set -euo pipefail
 
-readonly REPO="$1"
+REPO="$1"
 readonly TMPD="$(mktemp -d)"
-git clone --depth 1 "$REPO" "$TMPD"
-echo "$TMPD" > ~/.last-git-peek
-export LAST_GIT_PEEK="$TMPD"
-cd "$TMPD" # undo by `cd -`
 
-# launch editor or ripgrep
+if [[ ! "$REPO" =~ ^https ]] ; then
+  REPO="https://github.com/$REPO"
+fi
+
+git clone --depth 1 "$REPO" "$TMPD"
+
+echo "$TMPD # $REPO" > ~/.last-git-peek
+export LAST_GIT_PEEK="$TMPD"
+
+cd "$TMPD" # undo by `cd -`
