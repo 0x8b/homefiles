@@ -1,3 +1,12 @@
 {
-    "files.autoSave": "afterDelay"
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Github Light Theme",
+    "editor.fontFamily": "'FiraCode Nerd Font', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 16,
+    "editor.cursorSurroundingLines": 5,
+    "editor.cursorStyle": "block",
+    "editor.fontWeight": 400,
+    "editor.tabSize": 2,
+    "editor.renderWhitespace": "all"
 }

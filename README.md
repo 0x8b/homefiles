@@ -15,6 +15,8 @@ curl -Lks https://raw.githubusercontent.com/0x8b/homefiles/master/.local/bin/ins
 
 - [Brave](https://brave.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
+  - [Github Light Theme](https://github.com/chuling/vscode-theme-github-light)
+  - [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts)
 - [rbenv](https://github.com/rbenv/rbenv) with [ruby-build](https://github.com/rbenv/ruby-build) plugin
 - [Ruby 3.0.0](https://www.ruby-lang.org/en/)
 - [Rust 1.50.0](https://www.rust-lang.org/)

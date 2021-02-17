@@ -116,7 +116,7 @@ fi
 function config {
   case $1 in
     "edit" | "modify")
-      nano $(config list-tracked-files | fzf -e -i)
+      nano $($(config list-tracked-files | fzf -e -i) || exit)
       ;;
     "search" | "find")
       rg "$2" $(config list-tracked-files)

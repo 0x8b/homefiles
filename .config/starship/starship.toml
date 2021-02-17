@@ -1,4 +1,5 @@
 format = """
+$shlvl\
 $directory\
 $git_branch\
 $git_commit\
@@ -18,6 +19,14 @@ style_root = "red bold"
 format = "[$user]($style) "
 disabled = false
 show_always = true
+
+[shlvl]
+disabled = false
+threshold = 1
+format = "[$symbol]($style) "
+style = "yellow"
+repeat = true
+symbol = "\uf544"
 
 [directory]
 format = "[$path]($style) [$read_only]($read_only_style)"
