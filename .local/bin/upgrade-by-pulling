@@ -31,6 +31,10 @@ if is_command_and_executable "cargo" ; then
 
   # https://github.com/ajeetdsouza/zoxide
   cargo install zoxide
+
+  # https://github.com/Canop/broot
+  cargo install broot
+  broot --install
 fi
 
 # https://github.com/junegunn/fzf

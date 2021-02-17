@@ -116,7 +116,9 @@ fi
 function config {
   case $1 in
     "edit" | "modify")
-      nano $($(config list-tracked-files | fzf -e -i) || exit)
+      if path="$(config list-tracked-files | fzf -e -i)" ; then
+        [ -f "$path" ] && nano "$path"
+      fi
       ;;
     "search" | "find")
       rg "$2" $(config list-tracked-files)
@@ -154,3 +156,5 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
+
+source ~/.config/broot/launcher/bash/br

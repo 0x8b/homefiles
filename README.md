@@ -26,4 +26,5 @@ curl -Lks https://raw.githubusercontent.com/0x8b/homefiles/master/.local/bin/ins
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [fzf](https://github.com/junegunn/fzf)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
+- [broot](https://github.com/Canop/broot)
 - [starship](https://starship.rs/)
