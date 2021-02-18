@@ -23,5 +23,5 @@ alias youtube-dl-mp3='youtube-dl -i --extract-audio --audio-format mp3 --audio-q
 
 alias git-peek='source codetmp'
 
-alias cedit='config edit'
-alias cadd='config add -u'
+alias ce='config edit'
+alias ca='config add -u'

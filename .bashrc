@@ -116,7 +116,7 @@ fi
 function config {
   case $1 in
     "edit" | "modify")
-      if path="$(config list-tracked-files | fzf -e -i)" ; then
+      if path="$(config list-tracked-files | fzf -e -i --height 40% --reverse)" ; then
         [ -f "$path" ] && nano "$path"
       fi
       ;;
@@ -136,6 +136,17 @@ function config {
       ;;
   esac
 }
+
+function mkcd {
+  mkdir -pv -- "$1" && cd -- "$1"
+}
+
+if [[ $- == *i* ]] ; then
+    bind '"\e[A": history-search-backward'
+    bind '"\e[B": history-search-forward'
+fi
+
+shopt -s autocd
 
 if [ -f ~/.last-git-peek ] ; then
   readonly lgp="$(cat ~/.last-git-peek | awk '{ print $1 }')"
