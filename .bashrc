@@ -152,16 +152,16 @@ function mkcd {
 
 function lastgitpeek {
   if [[ -f ~/.last-git-peek ]] ; then
-    local -r entries=$(cat ~/.last-git-peek)
+    existing=$(mktemp)
 
-    cp /dev/null ~/.last-git-peek
+    while read -r directory ; do
+      [[ -d ${directory%% *} ]] && echo "$directory" >> $existing
+    done < ~/.last-git-peek
 
-    while read -r entry ; do
-      [[ -d $(echo "$entry" | awk '{ print $1 }') ]] && echo "$entry" >> ~/.last-git-peek
-    done <<< "$entries"
+    cp $existing ~/.last-git-peek
 
-    if path="$(cat ~/.last-git-peek | fzf -i --select-1 --height 40%)" ; then
-      cd -- $( echo "$path" | awk '{ print $1 }')
+    if directory="$(cat ~/.last-git-peek | fzf -i --select-1)" ; then
+      cd ${directory%% *}
     fi
   fi
 
