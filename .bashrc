@@ -173,3 +173,11 @@ eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 
 . ~/.config/broot/launcher/bash/br
+
+function finish {
+  echo "$PWD" > ~/.oldpwd
+}
+
+[ -f ~/.oldpwd ] && export OLDPWD="$(cat ~/.oldpwd)"
+
+trap finish EXIT
