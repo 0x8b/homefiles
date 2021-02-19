@@ -1,0 +1,17 @@
+# don't respect ignore files
+--no-ignore
+
+# the given patterns will be searched case insensitively
+--ignore-case
+
+# follow symbolic links
+--follow
+
+# search hidden files and directories
+--hidden
+
+# exclude directories
+--glob=!{.git,.svn,.tldr}
+
+# sort by file path
+--sort=path

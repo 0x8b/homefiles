@@ -167,6 +167,8 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 [ -f ~/.cargo/env ] && . ~/.cargo/env
 
+export RIPGREP_CONFIG_PATH=~/.config/ripgrep/rc
+
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 
