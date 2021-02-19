@@ -4,9 +4,16 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+  *i*) bind '"\e[A": history-search-backward'
+       bind '"\e[B": history-search-forward'
+       ;;
+    *) return
+       ;;
 esac
+
+# a command name that is the name of a directory is executed as if
+# it were the argument to the `cd` command.
+shopt -s autocd
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -25,7 +32,7 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -95,6 +102,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+EDITOR=nano
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
   PATH="$HOME/bin:$PATH"
@@ -141,13 +150,6 @@ function mkcd {
   mkdir -pv -- "$1" && cd -- "$1"
 }
 
-if [[ $- == *i* ]] ; then
-    bind '"\e[A": history-search-backward'
-    bind '"\e[B": history-search-forward'
-fi
-
-shopt -s autocd
-
 if [ -f ~/.last-git-peek ] ; then
   readonly lgp="$(cat ~/.last-git-peek | awk '{ print $1 }')"
 
@@ -156,16 +158,16 @@ if [ -f ~/.last-git-peek ] ; then
   fi
 fi
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
 
 export RBENV_VERSION=3.0.0
 eval "$(rbenv init -)"
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
-[ -f ~/.cargo/env ] && source ~/.cargo/env
+[ -f ~/.cargo/env ] && . ~/.cargo/env
 
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 
-source ~/.config/broot/launcher/bash/br
+. ~/.config/broot/launcher/bash/br

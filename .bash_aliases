@@ -21,7 +21,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias youtube-dl-mp3='youtube-dl -i --extract-audio --audio-format mp3 --audio-quality 0 --output "~/Music/%(title)s.%(ext)s"'
 
-alias git-peek='source codetmp'
+alias gitpeek='source ~/.local/bin/gitpeek'
 
 alias ce='config edit'
 alias ca='config add -u'

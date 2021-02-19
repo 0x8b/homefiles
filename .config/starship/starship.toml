@@ -29,11 +29,11 @@ repeat = true
 symbol = "\uf544"
 
 [directory]
-format = "[$path]($style) [$read_only]($read_only_style)"
+format = "[$path]($style) [$read_only]($read_only_style) "
 read_only = "\uf023"
 style = "green"
 truncation_symbol = ".../"
-truncation_length = 6
+truncation_length = 7
 
 [cmd_duration]
 min_time = 10_000

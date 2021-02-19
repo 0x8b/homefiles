@@ -11,7 +11,7 @@ if [[ ! "$REPO" =~ ^https ]] ; then
   REPO="https://github.com/$REPO"
 fi
 
-git clone --depth 1 "$REPO" "$TMPD"
+git clone --depth 1 "$REPO" "$TMPD" || exit 1
 
 echo "$TMPD # $REPO" > ~/.last-git-peek
 export LAST_GIT_PEEK="$TMPD"
