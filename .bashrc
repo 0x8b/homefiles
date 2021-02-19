@@ -35,10 +35,10 @@ shopt -s checkwinsize
 shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
@@ -52,7 +52,7 @@ esac
 # should be on the output of commands, not on the prompt
 #force_color_prompt=yes
 
-if [ -n "$force_color_prompt" ]; then
+if [[ -n "$force_color_prompt" ]]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 	# We have color support; assume it's compliant with Ecma-48
 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
@@ -63,7 +63,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
+if [[ "$color_prompt" = yes ]]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
@@ -80,14 +80,14 @@ xterm*|rxvt*)
 esac
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+if [[ -x /usr/bin/dircolors ]]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-if [ -f ~/.bash_aliases ]; then
+if [[ -f ~/.bash_aliases ]]; then
     . ~/.bash_aliases
 fi
 
@@ -95,9 +95,9 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
+  if [[ -f /usr/share/bash-completion/bash_completion ]]; then
     . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
+  elif [[ -f /etc/bash_completion ]]; then
     . /etc/bash_completion
   fi
 fi
@@ -105,27 +105,27 @@ fi
 EDITOR=nano
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ] ; then
+if [[ -d "$HOME/bin" ]] ; then
   PATH="$HOME/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
+if [[ -d "$HOME/.local/bin" ]] ; then
   PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "$HOME/.cargo/bin" ] ; then
+if [[ -d "$HOME/.cargo/bin" ]] ; then
   PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-if [ -d "$HOME/.rbenv/bin" ] ; then
+if [[ -d "$HOME/.rbenv/bin" ]] ; then
   PATH="$HOME/.rbenv/bin:$PATH"
 fi
 
 function config {
   case $1 in
     "edit" | "modify")
-      if path="$(config list-tracked-files | fzf -e -i --height 40% --reverse)" ; then
+      if path="$(config list-tracked-files | fzf -e -i)" ; then
         [ -f "$path" ] && nano "$path"
       fi
       ;;
@@ -150,32 +150,49 @@ function mkcd {
   mkdir -pv -- "$1" && cd -- "$1"
 }
 
-function lastgitpeek {
-  if [[ -f ~/.last-git-peek ]] ; then
-    existing=$(mktemp)
+function gitpeek {
+  if [[ -n "$1" ]] ; then
+    local repo="$1"
+    local tmpdname="$(mktemp -d)"
 
-    while read -r directory ; do
-      [[ -d ${directory%% *} ]] && echo "$directory" >> $existing
-    done < ~/.last-git-peek
+    if [[ ! "$repo" =~ ^https ]] ; then
+      repo="https://github.com/${repo}"
+    fi
 
-    cp $existing ~/.last-git-peek
+    git clone --depth 1 "$repo" "$tmpdname" || return
 
-    if directory="$(cat ~/.last-git-peek | fzf -i --select-1)" ; then
-      cd ${directory%% *}
+    echo "${tmpdname} # ${repo}" >> ~/.git-peek
+
+    cd "$tmpdname" # undo by `cd -`
+
+    return
+  fi
+
+  if [[ -f ~/.git-peek ]] ; then
+    alive=$(mktemp)
+
+    while read -r dname ; do
+      [[ -d ${dname%% *} ]] && echo $dname >> $alive
+    done < ~/.git-peek
+
+    cp $alive ~/.git-peek
+
+    if dname="$(cat ~/.git-peek | fzf -i --select-1 --exit-0)" ; then
+      cd ${dname%% *}
     fi
   fi
 
   return
 }
 
-[ -f ~/.fzf.bash ] && . ~/.fzf.bash
+[[ -f ~/.fzf.bash ]] && . ~/.fzf.bash
 
 export RBENV_VERSION=3.0.0
 eval "$(rbenv init -)"
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
-[ -f ~/.cargo/env ] && . ~/.cargo/env
+[[ -f ~/.cargo/env ]] && . ~/.cargo/env
 
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/rc
 
@@ -188,6 +205,6 @@ function finish {
   echo "$PWD" > ~/.oldpwd
 }
 
-[ -f ~/.oldpwd ] && export OLDPWD="$(cat ~/.oldpwd)"
+[[ -f ~/.oldpwd ]] && export OLDPWD="$(cat ~/.oldpwd)"
 
 trap finish EXIT
