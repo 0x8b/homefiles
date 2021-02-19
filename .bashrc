@@ -150,13 +150,23 @@ function mkcd {
   mkdir -pv -- "$1" && cd -- "$1"
 }
 
-if [ -f ~/.last-git-peek ] ; then
-  readonly lgp="$(cat ~/.last-git-peek | awk '{ print $1 }')"
+function lastgitpeek {
+  if [[ -f ~/.last-git-peek ]] ; then
+    local -r entries=$(cat ~/.last-git-peek)
 
-  if [ -d "$lgp" ] ; then
-    export LAST_GIT_PEEK="$lgp"
+    cp /dev/null ~/.last-git-peek
+
+    while read -r entry ; do
+      [[ -d $(echo "$entry" | awk '{ print $1 }') ]] && echo "$entry" >> ~/.last-git-peek
+    done <<< "$entries"
+
+    if path="$(cat ~/.last-git-peek | fzf -i --select-1 --height 40%)" ; then
+      cd -- $( echo "$path" | awk '{ print $1 }')
+    fi
   fi
-fi
+
+  return
+}
 
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
 

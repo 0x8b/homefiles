@@ -2,18 +2,15 @@
 
 # https://news.ycombinator.com/item?id=26083919
 
-set -euo pipefail
-
 REPO="$1"
-readonly TMPD="$(mktemp -d)"
+TMPD="$(mktemp -d)"
 
 if [[ ! "$REPO" =~ ^https ]] ; then
   REPO="https://github.com/$REPO"
 fi
 
-git clone --depth 1 "$REPO" "$TMPD" || exit 1
+git clone --depth 1 "$REPO" "$TMPD" || return
 
-echo "$TMPD # $REPO" > ~/.last-git-peek
-export LAST_GIT_PEEK="$TMPD"
+echo "$TMPD # $REPO" >> ~/.last-git-peek
 
 cd "$TMPD" # undo by `cd -`
