@@ -1,0 +1,162 @@
+imap ;a 1
+imap ;s 2
+imap ;d 3
+imap ;f 4
+imap ;g 5
+imap ;h 6
+imap ;j 7
+imap ;k 8
+imap ;l 9
+imap ;; 0
+
+" 150 most rare bigrams ([a-z][a-z])
+" imap bh
+" imap bk
+" imap bv
+" imap bx
+" imap cg
+  imap cj +
+" imap cq
+" imap cv
+" imap cw
+" imap cx
+" imap cz
+" imap dk
+" imap dq
+" imap dz
+" imap fg
+" imap fh
+" imap fj
+" imap fp
+" imap fq
+" imap fv
+" imap fw
+" imap fx
+" imap fz
+  imap gj &
+  imap gk \|
+" imap gq
+" imap gx
+" imap hj
+" imap hk
+" imap hq
+" imap hx
+" imap hz
+" imap iw
+" imap iy
+" imap jb
+  imap jc #
+" imap jf
+" imap jg
+" imap jh
+  imap jj <Esc>
+  imap jk =
+  imap jl _
+  imap jm -
+" imap jn
+  imap jr `
+  imap jt ~
+  imap jv $
+" imap jw
+  imap jx @
+" imap jy
+  imap jz !
+" imap kj
+" imap kq
+  imap kv *
+  imap kx ^
+  imap kz %
+" imap lj
+" imap lq
+  imap lx '
+  imap lz \
+" imap mh
+" imap mv
+" imap mx
+" imap mz
+" imap nx
+" imap pj
+" imap pq
+" imap px
+" imap pz
+" imap qb
+" imap qd
+" imap qe
+" imap qf
+" imap qg
+" imap qh
+" imap qi
+" imap qj
+" imap qk
+" imap qm
+" imap qn
+" imap qo
+" imap qp
+" imap qq
+" imap qr
+" imap qt
+" imap qv
+" imap qw
+" imap qx
+" imap qy
+" imap qz
+" imap rq
+" imap rx
+  imap sj "
+" imap sx
+" imap uq
+" imap vb
+" imap vc
+" imap vd
+" imap vf
+" imap vh
+  imap vj )
+  imap vk ]
+  imap vm }
+" imap vp
+" imap vq
+" imap vs
+" imap vt
+" imap vv
+" imap vw
+" imap vx
+" imap vz
+" imap wf
+" imap wg
+" imap wj
+" imap wq
+" imap wu
+" imap wv
+" imap wx
+" imap xb
+" imap xd
+" imap xf
+" imap xg
+" imap xj
+" imap xk
+" imap xl
+" imap xn
+" imap xq
+" imap xv
+" imap xw
+" imap xz
+" imap yj
+" imap yq
+" imap yv
+" imap yx
+" imap zb
+" imap zc
+" imap zd
+" imap zf
+" imap zg
+" imap zh
+  imap zj (
+  imap zk [
+  imap zm {
+" imap zp
+" imap zq
+" imap zr
+" imap zs
+" imap zt
+" imap zv
+" imap zx
