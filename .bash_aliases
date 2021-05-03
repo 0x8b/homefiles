@@ -23,3 +23,5 @@ alias youtube-dl-mp3='youtube-dl -i --extract-audio --audio-format mp3 --audio-q
 
 alias ce='config edit'
 alias ca='config add -u'
+
+alias tmux="LD_LIBRARY_PATH=$HOME/local/lib $HOME/local/bin/tmux"

@@ -126,7 +126,7 @@ function config {
   case $1 in
     "edit" | "modify")
       if path="$(config list-tracked-files | fzf -e -i)" ; then
-        [ -f "$path" ] && nano "$path"
+        [ -f "$path" ] && nvim "$path"
       fi
       ;;
     "search" | "find")
